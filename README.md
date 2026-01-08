@@ -13,7 +13,6 @@ This project wraps the Gather web client in Electron with specific tweaks to fix
 - **Smart Auto-Away:**
   - Detects system sleep/suspend and sets "Away" immediately.
 - **Hotkeys Fixed:** Prevents Electron from swallowing critical game keys like `WASD` or `Ctrl+Shift+A`.
-- **CLI Control:** Trigger "Away" status programmatically via command line (great for custom scripts).
 
 ## 📥 Installation
 
