@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Gather
 Comment=Gather Town Client
-Exec=gather-electron
+Exec=gather-linux
 Terminal=false
 Type=Application
 Categories=Network;
-# Icon=gather  <-- You can add an icon.png to the repo and reference it here
+Icon=assets/icon.png
