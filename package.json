@@ -1,16 +1,40 @@
 {
-  "name": "gather-electron",
+  "name": "gather-linux",
+  "productName": "Gather",
+  "description": "Unofficial Gather Town Client for Linux",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
-    "electron": "^39.2.7"
+    "electron": "^39.2.7",
+    "electron-builder": "^26.4.0"
+  },
+  "executableName": "gather-linux",
+  "build": {
+    "appId": "com.simonkoeck.gather-linux",
+    "productName": "Gather",
+    "directories": {
+      "output": "dist"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Network",
+      "icon": "assets/icon.png"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "simonkoeck",
+      "repo": "gather-linux"
+    }
   }
 }

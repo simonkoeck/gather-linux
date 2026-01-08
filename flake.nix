@@ -13,7 +13,7 @@
       in
       {
         packages.default = pkgs.stdenv.mkDerivation {
-          pname = "gather-electron";
+          pname = "gather-linux";
           version = "1.0.0";
 
           # Use the current directory as the source
@@ -26,16 +26,16 @@
 
           installPhase = ''
             # 1. Create directory for app source
-            mkdir -p $out/libexec/gather-electron
+            mkdir -p $out/libexec/gather-linux
             
             # 2. Copy the main files
-            cp main.js package.json $out/libexec/gather-electron/
+            cp main.js package.json $out/libexec/gather-linux/
 
             # 3. Create the binary wrapper
             # This creates a 'gather-electron' command that runs: 
             # electron /path/to/app --enable-features=WebRTCPipeWireCapturer
-            makeWrapper ${pkgs.electron}/bin/electron $out/bin/gather-electron \
-              --add-flags "$out/libexec/gather-electron" \
+            makeWrapper ${pkgs.electron}/bin/electron $out/bin/gather-linux \
+              --add-flags "$out/libexec/gather-linux" \
               --add-flags "--enable-features=WebRTCPipeWireCapturer"
 
             mkdir -p $out/share/applications

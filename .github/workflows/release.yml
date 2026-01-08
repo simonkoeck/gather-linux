@@ -1,0 +1,39 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*" # Triggers only when you push a tag like v1.0.0, v1.0.1, etc.
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    # PERMISSIONS: Required to upload files to the Releases page
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      # Install RPM tools (Required to build .rpm files on Ubuntu)
+      - name: Install Linux Graphics & RPM Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y rpm libopenjp2-7
+
+      - name: Build & Publish
+        env:
+          # This token is automatically provided by GitHub Actions
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run dist
