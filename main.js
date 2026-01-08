@@ -8,12 +8,6 @@ const {
   powerMonitor,
 } = require("electron");
 
-app.commandLine.appendSwitch(
-  "enable-features",
-  "UseOzonePlatform,WebRTCPipeWireCapturer",
-);
-app.commandLine.appendSwitch("ozone-platform", "wayland");
-
 // DISABLE THE NATIVE MENU
 Menu.setApplicationMenu(null);
 
@@ -83,17 +77,31 @@ function createWindow() {
 
   session.defaultSession.setDisplayMediaRequestHandler(
     (request, callback) => {
-      desktopCapturer.getSources({ types: ["screen"] }).then((sources) => {
-        console.log("Screen sources:", sources);
-        // Grant access to the first screen found.
-        callback({ video: sources[0] });
-      });
-      // If true, use the system picker if available.
-      // Note: this is currently experimental. If the system picker
-      // is available, it will be used and the media request handler
-      // will not be invoked.
+      desktopCapturer
+        .getSources({ types: ["screen", "window"] })
+        .then((sources) => {
+          if (sources.length === 1) {
+            callback({ video: sources[0] });
+            return;
+          }
+          const menu = Menu.buildFromTemplate(
+            sources.map((source) => {
+              return {
+                label: source.name,
+                click: () => {
+                  // Video only (Audio must be excluded to prevent crash)
+                  callback({ video: source });
+                },
+              };
+            }),
+          );
+          menu.popup();
+        })
+        .catch((err) => console.log("Screen share error:", err));
     },
-    { useSystemPicker: true },
+    {
+      useSystemPicker: true,
+    },
   );
 
   win.webContents.setWindowOpenHandler(({ url }) => {
