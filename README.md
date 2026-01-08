@@ -4,7 +4,7 @@ An unofficial, optimized **Gather Town** client for Linux.
 
 This project wraps the Gather web client in Electron with specific tweaks to fix common Linux issues like **screen sharing on Wayland**, global hotkeys, and auto-away functionality.
 
-![Gather Linux Icon](assets/icon.png)
+<img src="assets/icon.png" alt="Gather Linux Icon" width="100"/>
 
 ## ✨ Features
 
