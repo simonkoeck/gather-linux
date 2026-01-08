@@ -27,9 +27,12 @@
           installPhase = ''
             # 1. Create directory for app source
             mkdir -p $out/libexec/gather-linux
+            mkdir -p $out/share/icons/hicolor/512x512/apps
             
             # 2. Copy the main files
             cp main.js package.json $out/libexec/gather-linux/
+            # Copy the assets
+            cp assets/icon.png $out/share/icons/hicolor/512x512/apps/gather-linux.png
 
             # 3. Create the binary wrapper
             # This creates a 'gather-electron' command that runs: 

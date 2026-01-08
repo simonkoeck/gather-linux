@@ -5,4 +5,4 @@ Exec=gather-linux
 Terminal=false
 Type=Application
 Categories=Network;
-Icon=assets/icon.png
+Icon=gather-linux
