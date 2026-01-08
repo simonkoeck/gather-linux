@@ -8,6 +8,7 @@ This project wraps the Gather web client in Electron with specific tweaks to fix
 
 ## ✨ Features
 
+- **Gather 2.0 & Classic:** Support for both the new Beta (default) and Classic versions.
 - **Wayland Screen Sharing:** Native support for PipeWire to fix the infamous "black screen" issue on modern Linux (GNOME/KDE/Hyprland).
 - **Smart Auto-Away:**
   - Detects system sleep/suspend and sets "Away" immediately.
@@ -100,6 +101,8 @@ You can control the running instance from the terminal.
 
 ```bash
 gather-linux
+# or launch the classic (v1) version
+gather-linux --classic
 ```
 
 ## 🛠 Troubleshooting

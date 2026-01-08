@@ -8,10 +8,14 @@ const {
   powerMonitor,
 } = require("electron");
 
+const URL_V2 = "https://app.v2.gather.town/";
+const URL_CLASSIC = "https://app.gather.town/";
+
+// Determine URL based on startup flags
+let GATHER_URL = process.argv.includes("--classic") ? URL_CLASSIC : URL_V2;
+
 // DISABLE THE NATIVE MENU
 Menu.setApplicationMenu(null);
-
-const GATHER_URL = "https://app.v2.gather.town/";
 
 function createWindow() {
   const win = new BrowserWindow({
