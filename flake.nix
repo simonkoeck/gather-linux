@@ -14,7 +14,7 @@
       {
         packages.default = pkgs.stdenv.mkDerivation {
           pname = "gather-linux";
-          version = "1.0.0";
+          version = "1.0.6";
 
           # Use the current directory as the source
           src = ./.;
